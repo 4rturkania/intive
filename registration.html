@@ -1,0 +1,73 @@
+<!-- 
+
+
+
+ -->
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <script src="regValidation.js"></script>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <ul class="main-nav">
+        <li><a href="login.html">Logowanie</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="header">
+        <h2>Załóż konto</h2>
+      </div>
+      <form
+        id="form"
+        class="form"
+      >
+        <div class="form-control">
+          <label for="username">Nazwa użytkownika</label>
+          <input
+            type="text"
+            id="username"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Email</label>
+          <input
+            type="email"
+            id="email"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Potwierdź e-mail</label>
+          <input
+            type="email"
+            id="email2"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Hasło</label>
+          <input
+            type="password"
+            id="password"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <button>Zarejestruj</button>
+      </form>
+    </div>
+  </body>
+</html>

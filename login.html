@@ -1,0 +1,54 @@
+<!-- 
+
+
+
+ -->
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
+    <script src="regValidation.js"></script>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <ul class="main-nav">
+        <li><a href="registration.html">Rejestracja</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="header">
+        <h2>Logowanie</h2>
+      </div>
+      <form
+        id="form"
+        class="form"
+      >
+        <div class="form-control">
+          <label for="username">Nazwa użytkownika</label>
+          <input
+            type="text"
+            id="username"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+
+        <div class="form-control">
+          <label for="username">Hasło</label>
+          <input
+            type="password"
+            id="password"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <button>Zaloguj</button>
+      </form>
+    </div>
+  </body>
+</html>
