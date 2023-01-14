@@ -5,7 +5,7 @@ change import font in CSS to link in HTML
 
 */
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 /* start of navbar/header styling */
 
@@ -13,7 +13,7 @@ change import font in CSS to link in HTML
   box-sizing: border-box;
 }
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   margin: 0;
   min-height: 100vh;
@@ -93,7 +93,7 @@ a,
 
 body {
   background-color: #9b59b6;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -205,4 +205,12 @@ body {
   padding: 10px;
   margin-top: 20px;
   width: 100%;
+}
+
+th,
+td {
+  border: 1px solid;
+}
+th {
+  font-weight: bold;
 }

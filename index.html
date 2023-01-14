@@ -10,7 +10,10 @@ fdssdfs
       rel="stylesheet"
       href="styles.css"
     />
-    <script src="app.js"></script>
+    <script
+      type="text/javascript"
+      src="app.js"
+    ></script>
   </head>
   <body>
     <header class="nav-bar">
@@ -27,6 +30,7 @@ fdssdfs
       <form
         id="form"
         class="form"
+        onsubmit="signUp(event);"
       >
         <div class="form-control">
           <label for="username">Nazwa użytkownika</label>
@@ -68,7 +72,7 @@ fdssdfs
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>
         </div>
-        <button>Zarejestruj</button>
+        <button type="submit">Zarejestruj</button>
       </form>
     </div>
   </body>

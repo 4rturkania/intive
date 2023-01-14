@@ -10,7 +10,10 @@
       rel="stylesheet"
       href="styles.css"
     />
-    <script src="regValidation.js"></script>
+    <script
+      type="text/javascript"
+      src="./app.js"
+    ></script>
   </head>
   <body>
     <header class="nav-bar">
@@ -23,8 +26,10 @@
         <h2>Załóż konto</h2>
       </div>
       <form
+        role="form"
         id="form"
         class="form"
+        onsubmit="signUp(event)"
       >
         <div class="form-control">
           <label for="username">Nazwa użytkownika</label>
@@ -66,7 +71,7 @@
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>
         </div>
-        <button>Zarejestruj</button>
+        <button type="submit">Zarejestruj</button>
       </form>
     </div>
   </body>
