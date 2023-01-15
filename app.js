@@ -173,29 +173,111 @@ function addAllColumnHeaders(arr, table) {
   return columnSet;
 }
 
-fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd')
+fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/')
   .then((res) => res.json())
   .then((data) => console.log(data));
 
-fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd')
-  .then((res) => res.json())
-  .then((data) => {
-    document.getElementById('output').innerHTML = data;
-  });
+// fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd')
+//   .then((res) => res.json())
+//   .then((data) => {
+//     document.getElementById('output').innerHTML = data;
+//   });
 
-document.body.appendChild(
-  buildHtmlTable([
-    {
-      name: 'abc',
-      age: 50,
-    },
-    {
-      age: '25',
-      hobby: 'swimming',
-    },
-    {
-      name: 'xyz',
-      hobby: 'programming',
-    },
-  ])
-);
+// // getTransacationTypes() {
+// fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/transacationTypes')
+//   .then((res) => res.json())
+//   .then((data) => {
+//     let output = [];
+//     data.forEach(function (transacationTypes){
+//       output+=
+//     });
+//     console.log(output)
+//   })
+// // }
+
+// const api_url = 'https://api.npoint.io/38edf0c5f3eb9ac768bd/transacationTypes';
+// async function getTypes() {
+//   const response = await fetch(api_url);
+//   const data = await response.json();
+//   console.log(data['1']);}
+
+// getTypes();
+
+function getType(type) {
+  switch (type) {
+    case 1:
+      return 'Wpływy - inne';
+      break;
+    case 2:
+      return 'Wydatki - zakupy';
+      break;
+    case 3:
+      return 'Wpływy - wynagrodzenie';
+      break;
+    case 4:
+      return 'Wydatki - inne';
+      break;
+  }
+}
+
+function getIcon(type) {
+  switch (type) {
+    case 1:
+      return './icons/profits.png';
+      break;
+    case 2:
+      return 'icons/grocery.png';
+      break;
+    case 3:
+      return 'icons/salary.png';
+      break;
+    case 4:
+      return 'icons/spending.png';
+      break;
+  }
+}
+
+// function getType(type) {
+//   if (type == 1) {
+//     return 'test';
+//   }
+// }
+
+getTransactions();
+function getTransactions() {
+  fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions')
+    .then((res) => res.json())
+    .then((data) => {
+      let output = '<h2>Transactions</h2>';
+      data.forEach(function (transactions) {
+        output += `
+  <table><tr>
+  <th>${transactions.date}</th>
+  <th><img src=${getIcon(transactions.type)} class='icon'></th>
+  <th>Opis: ${transactions.description} - ${getType(transactions.type)}</th>
+  <th>Kwota: ${transactions.amount}</th>
+  <th>Saldo: ${transactions.balance}</th>
+  </tr>
+  </table>
+  `;
+      });
+      document.getElementById('output').innerHTML = output;
+    });
+}
+
+// document.body.appendChild(
+//   buildHtmlTable([
+//     {
+//       name: 'abc',
+//       age: 50,
+//     },
+//     {
+//       age: '25',
+//       hobby: 'swimming',
+//     },
+//     {
+//       name: 'xyz',
+//       hobby: 'programming',
+//     },
+//   ])
+// );
