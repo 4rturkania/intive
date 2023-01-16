@@ -1,3 +1,5 @@
+//in barChart fix red label "Saldo" at the top
+
 window.onload = function () {
   //localStorage.clear();
   const form = document.getElementById('form');
@@ -131,51 +133,9 @@ function signIn(e) {
   e.preventDefault();
 }
 
-var _table_ = document.createElement('table'),
-  _tr_ = document.createElement('tr'),
-  _th_ = document.createElement('th'),
-  _td_ = document.createElement('td');
-
-// Builds the HTML Table out of myList json data from Ivy restful service.
-function buildHtmlTable(arr) {
-  var table = _table_.cloneNode(false),
-    columns = addAllColumnHeaders(arr, table);
-  for (var i = 0, maxi = arr.length; i < maxi; ++i) {
-    var tr = _tr_.cloneNode(false);
-    for (var j = 0, maxj = columns.length; j < maxj; ++j) {
-      var td = _td_.cloneNode(false);
-      var cellValue = arr[i][columns[j]];
-      td.appendChild(document.createTextNode(arr[i][columns[j]] || ''));
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
-  return table;
-}
-
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records
-function addAllColumnHeaders(arr, table) {
-  var columnSet = [],
-    tr = _tr_.cloneNode(false);
-  for (var i = 0, l = arr.length; i < l; i++) {
-    for (var key in arr[i]) {
-      if (arr[i].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
-        columnSet.push(key);
-        var th = _th_.cloneNode(false);
-        th.appendChild(document.createTextNode(key));
-        tr.appendChild(th);
-      }
-    }
-  }
-  table.appendChild(tr);
-  return columnSet;
-}
-
-fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/')
-  .then((res) => res.json())
-  .then((data) => console.log(data));
+// fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/')
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
 
 // fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd')
 //   .then((res) => res.json())
@@ -195,13 +155,142 @@ fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/')
 //   })
 // // }
 
-// const api_url = 'https://api.npoint.io/38edf0c5f3eb9ac768bd/transacationTypes';
-// async function getTypes() {
+let transactionDates = [];
+
+async function getDataForCharts() {
+  const res = await fetch(
+    'https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions'
+  );
+
+  let obj = await res.json();
+
+  for (let i = 0; i < obj.length; i++) {
+    barChart.data.labels.push(obj[i]['date']);
+    barChart.data.datasets[0].data.push(obj[i]['balance']);
+    barChart.update();
+    pieChart.data.labels.push(obj[i]['type']);
+    pieChart.data.datasets[0].data.push(obj[i]['balance']);
+    pieChart.update();
+  }
+}
+
+getDataForCharts();
+
+// if (Array === transactionDates.constructor) {
+//   console.log('Its an array');
+// }
+
+// let transactionDates = [];
+
+// fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions')
+//   .then((res) => res.json())
+//   .then((data) => {
+//     for (let i = 0; i < data.length; i++) {
+//       transactionDates.push(data[i]['date']);
+//     }
+//   })
+//   .then(() => {
+//     console.log(transactionDates);
+//   });
+
+// console.log(transactionDates);
+
+// let obj=[]
+
+// fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions')
+//   .then((res) => res.json())
+//   .then((data) => {
+//   data.forEach(function (objInTrans) {
+//     obj.push(objInTrans.date);
+//     // obj = data;
+//   })
+//   .then(() => {
+//     console.log(obj);
+//   });
+
+// const api_url = 'https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions';
+// async function fetchDates() {
 //   const response = await fetch(api_url);
 //   const data = await response.json();
-//   console.log(data['1']);}
+//   let dates = [];
+//   data.forEach(function (objInTrans) {
+//     dates.push(objInTrans.date);
+//   });
+//   return JSON.stringify(dates);
+// }
+// console.log(fetchDates());
 
-// getTypes();
+// setup barchart
+const barData = {
+  labels: [],
+  datasets: [
+    {
+      label: 'Saldo',
+      data: [],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+// setup piechart
+const pieData = {
+  labels: ['Red', 'Blue', 'Yellow'],
+  datasets: [
+    {
+      label: 'My First Dataset',
+      data: [300, 50, 100],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+      ],
+      hoverOffset: 4,
+    },
+  ],
+};
+
+// config barchart
+const barConfig = {
+  type: 'bar',
+  data: barData,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+};
+
+// config piechart
+const pieConfig = {
+  type: 'pie',
+  data: pieData,
+};
+
+// render barchart
+const barChart = new Chart(document.getElementById('barChart'), barConfig);
+
+//render piechart
+const pieChart = new Chart(document.getElementById('pieChart'), pieConfig);
 
 function getType(type) {
   switch (type) {
@@ -237,12 +326,6 @@ function getIcon(type) {
   }
 }
 
-// function getType(type) {
-//   if (type == 1) {
-//     return 'test';
-//   }
-// }
-
 getTransactions();
 function getTransactions() {
   fetch('https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions')
@@ -261,7 +344,7 @@ function getTransactions() {
   </table>
   `;
       });
-      document.getElementById('output').innerHTML = output;
+      // document.getElementById('output').innerHTML = output;
     });
 }
 
