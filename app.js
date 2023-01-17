@@ -161,18 +161,49 @@ async function getDataForCharts() {
   const res = await fetch(
     'https://api.npoint.io/38edf0c5f3eb9ac768bd/transactions'
   );
-
   let obj = await res.json();
-
-  for (let i = 0; i < obj.length; i++) {
-    barChart.data.labels.push(obj[i]['date']);
-    barChart.data.datasets[0].data.push(obj[i]['balance']);
-    barChart.update();
-    pieChart.data.labels.push(obj[i]['type']);
-    pieChart.data.datasets[0].data.push(obj[i]['balance']);
-    pieChart.update();
-  }
+  dataForBarChart(obj);
+  dataForPieChart(obj);
 }
+
+function dataForBarChart(arrAPI) {
+  for (let i = 0; i < arrAPI.length; i++) {
+    barChart.data.labels.unshift(arrAPI[i]['date']);
+    barChart.data.datasets[0].data.unshift(arrAPI[i]['balance']);
+  }
+  barChart.update();
+}
+
+function dataForPieChart(arrAPI) {
+  //get types from API
+  const transTypesArr = [];
+  for (let i = 0; i < arrAPI.length; i++) {
+    transTypesArr.unshift(arrAPI[i]['type']);
+  }
+  //get unique types (without repetition) = labels
+  const totalItems = transTypesArr.length;
+  const uniqueItems = [...new Set(transTypesArr)];
+  for (let i = 0; i < uniqueItems.length; i++) {
+    pieChart.data.labels.unshift(getType(uniqueItems[i]));
+  }
+  //get arr of % of each type
+  uniqueItems.forEach((currItem) => {
+    const numItems = transTypesArr.filter((item) => item === currItem);
+    pieChart.data.datasets[0].data.unshift(
+      (numItems.length * 100) / totalItems
+    );
+  });
+  pieChart.update();
+}
+
+//   for (let i = 0; i < arrAPI.length; i++) {
+//     barChart.data.labels.push(arrAPI[i]['date']);
+//     barChart.data.datasets[0].data.push(arrAPI[i]['balance']);
+//     barChart.update();
+//   }
+// }
+
+// const colors = ['blue', 'blue', 'red', 'red', 'red', 'green', 'green', 'white'];
 
 getDataForCharts();
 
@@ -252,15 +283,16 @@ const barData = {
 
 // setup piechart
 const pieData = {
-  labels: ['Red', 'Blue', 'Yellow'],
+  labels: [],
   datasets: [
     {
       label: 'My First Dataset',
-      data: [300, 50, 100],
+      data: [],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
         'rgb(255, 205, 86)',
+        'rgb(0, 204, 102)',
       ],
       hoverOffset: 4,
     },
@@ -344,23 +376,6 @@ function getTransactions() {
   </table>
   `;
       });
-      // document.getElementById('output').innerHTML = output;
+      document.getElementById('output').innerHTML = output;
     });
 }
-
-// document.body.appendChild(
-//   buildHtmlTable([
-//     {
-//       name: 'abc',
-//       age: 50,
-//     },
-//     {
-//       age: '25',
-//       hobby: 'swimming',
-//     },
-//     {
-//       name: 'xyz',
-//       hobby: 'programming',
-//     },
-//   ])
-// );
