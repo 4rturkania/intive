@@ -16,23 +16,24 @@
     />
     <script
       type="text/javascript"
-      src="app.js"
+      src="signup.js"
     ></script>
   </head>
   <body>
     <header class="nav-bar">
       <ul class="main-nav">
-        <li><a href="registration.html">Rejestracja</a></li>
+        <li><a href="signin.html">Logowanie</a></li>
       </ul>
     </header>
     <div class="container">
       <div class="header">
-        <h2>Logowanie</h2>
+        <h2>Załóż konto</h2>
       </div>
       <form
+        role="form"
         id="form"
         class="form"
-        onsubmit="signIn(event);"
+        onsubmit="signUp(event)"
       >
         <div class="form-control">
           <label for="username">Nazwa użytkownika</label>
@@ -44,7 +45,26 @@
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>
         </div>
-
+        <div class="form-control">
+          <label for="username">Email</label>
+          <input
+            type="text"
+            id="email"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Potwierdź e-mail</label>
+          <input
+            type="text"
+            id="email2"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
         <div class="form-control">
           <label for="username">Hasło</label>
           <input
@@ -55,7 +75,7 @@
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>
         </div>
-        <button type="submit">Zaloguj</button>
+        <button type="submit">Zarejestruj</button>
       </form>
     </div>
   </body>

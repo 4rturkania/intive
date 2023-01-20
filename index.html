@@ -1,5 +1,4 @@
 <!-- 
-fdssdfs
 
 
  -->
@@ -14,71 +13,52 @@ fdssdfs
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
     />
-    <script
-      type="text/javascript"
-      src="app.js"
-    ></script>
   </head>
   <body>
     <header class="nav-bar">
       <ul class="main-nav">
-        <li><a href="login.html">Logowanie</a></li>
-        <li><a href="registration.html">Rejestracja</a></li>
-        <li><a href="trans.html">Transakcje</a></li>
+        <li>
+          <a
+            href="signin.html"
+            id="login"
+            >Logowanie</a
+          >
+        </li>
+        <li>
+          <a
+            href="signup.html"
+            id="sign-up"
+            >Rejestracja</a
+          >
+        </li>
+        <li>
+          <a
+            href="transactions.html"
+            id="transactions"
+            class="hidden"
+            >Transakcje</a
+          >
+        </li>
+        <li>
+          <a
+            href="index.html"
+            id="logout-button"
+            class="hidden"
+            >Wyloguj</a
+          >
+        </li>
       </ul>
     </header>
 
     <div class="container">
       <div class="header">
-        <h2>Załóż konto</h2>
+        <h2>Zarządzaj swoimi transakcjami</h2>
+        <p>Jeśli nie masz u nas jeszcze konta, zarejestruj się.</p>
       </div>
-      <form
-        id="form"
-        class="form"
-        onsubmit="signUp(event);"
-      >
-        <div class="form-control">
-          <label for="username">Nazwa użytkownika</label>
-          <input
-            type="text"
-            id="username"
-          />
-          <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
-          <small>Error message</small>
-        </div>
-        <div class="form-control">
-          <label for="username">Email</label>
-          <input
-            type="email"
-            id="email"
-          />
-          <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
-          <small>Error message</small>
-        </div>
-        <div class="form-control">
-          <label for="username">Potwierdź e-mail</label>
-          <input
-            type="email"
-            id="email2"
-          />
-          <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
-          <small>Error message</small>
-        </div>
-        <div class="form-control">
-          <label for="username">Hasło</label>
-          <input
-            type="password"
-            id="password"
-          />
-          <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
-          <small>Error message</small>
-        </div>
-        <button type="submit">Zarejestruj</button>
-      </form>
     </div>
+    <script
+      type="text/javascript"
+      src="index.js"
+    ></script>
   </body>
 </html>

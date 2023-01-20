@@ -14,15 +14,23 @@
     <link
       href="https://fonts.googleapis.com/css?family=Open Sans"
       rel="stylesheet"
+      type="text/css"
     />
   </head>
   <body>
     <header class="nav-bar">
-        <div class="chartContainer">
-        <ul class="main-nav">
-          <li><a href="">Wyloguj</a></li>
-        </ul>
-      </header>
+      <ul class="main-nav">
+        <li><a id="loggedin-user"></a></li>
+        <li>
+          <a
+            href="index.html"
+            id="logout-button"
+            >Wyloguj</a
+          >
+        </li>
+      </ul>
+    </header>
+    <div class="chartContainer">
       <div class="chartMenu"></div>
       <div class="chartCard">
         <div class="chartBox">
@@ -44,7 +52,7 @@
     ></script>
     <script
       type="text/javascript"
-      src="app.js"
+      src="transactions.js"
     ></script>
   </body>
 </html>

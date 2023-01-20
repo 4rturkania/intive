@@ -1,11 +1,8 @@
 /* 
 
-change import font in CSS to link in HTML
 
 
 */
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 /* start of navbar/header styling */
 
@@ -22,6 +19,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-x: hidden;
 }
 ul {
   margin: 0;
@@ -82,6 +80,7 @@ a,
   .nav-bar,
   .main-nav {
     display: flex;
+    justify-content: flex-end;
   }
   .nav-bar {
     flex-direction: column;
@@ -184,6 +183,14 @@ a,
   visibility: hidden;
 }
 
+.hidden {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  left: -999px;
+}
+
 .form-control.error small {
   visibility: visible;
 }
@@ -202,7 +209,8 @@ a,
 }
 
 .icon {
-  max-width: 15%;
+  min-width: 3vw;
+  max-width: 7vw;
   height: auto;
 }
 
@@ -220,9 +228,16 @@ a,
   background: white;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 th,
 td {
   border: 1px solid;
+  /* padding: 8px; */
+  text-align: center;
 }
 th {
   font-weight: bold;
